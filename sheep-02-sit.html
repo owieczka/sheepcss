@@ -1,0 +1,219 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>CSS Sheep</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--<script charset="utf-8" type="module" src="js/main.js"></script>-->
+  <link rel="stylesheet" href="css/reset.css" />
+  <style>
+    body {
+      background: #f7f5ff;
+    }
+
+    .canva {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      outline: 1px solid red;
+    }
+    
+    .sheep {
+      --sheep-size: 60;
+      --sheep-x: 110;
+      --sheep-y: 140;
+    }
+
+    .highlight {
+      background-color: hsla(0,90%,90%,0.5);
+    }
+
+    .sheep {
+      box-sizing: border-box;
+      position: absolute;
+      left: calc(var(--sheep-x) * 1px);
+      top: calc(var(--sheep-y) * 1px);
+      --c: white;
+      --c2: hsl(0, 0%, 15%);
+
+      .body {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: calc(var(--sheep-size) * 1 * 1px);
+        height: calc(var(--sheep-size) * 4 / 5 * 1px);
+        border-radius: calc(var(--sheep-size) / 2 * 1px);
+        box-sizing: border-box;
+        border: 2px solid black;
+        background-color: var(--c);
+        transform-origin: calc(var(--sheep-size) * 3 / 8 * 1px) 50%;
+        transform: rotate(45deg);
+
+        .tail {
+          position: absolute;
+          /*left: calc((var(--sheep-size) * 1 / 2 - var(--sheep-size) * 1 / 6 ) * 1px);
+          top: calc((var(--sheep-size) * 1 / 2 - var(--sheep-size) * 1 / 6 ) * 1px);*/
+          left: calc((var(--sheep-size) * 1 / 2 + var(--sheep-size) * 2.5 / 10 ) * 1px);
+          top: calc((var(--sheep-size) * 3 / 8 - var(--sheep-size) * 3 / 6 ) * 1px);
+          width: calc(var(--sheep-size) * 2 / 5 * 1px);
+          height: calc(var(--sheep-size) * 2 / 5 * 1px);
+          border-radius: 50%;
+          border: 2px solid black;
+          background-color: var(--c);
+        }
+      }
+
+      .footr {
+        position: absolute;
+        left: calc((var(--sheep-size) * 1 / 2) * 1px);
+        top: calc((var(--sheep-size)*3 / 4 - var(--sheep-size) * 1 / 6 ) * 1px);
+        width: calc(var(--sheep-size) *2 /3 * 1px);
+        height: calc(var(--sheep-size) / 2 * 1px);
+        border-radius: calc(var(--sheep-size) * 3 / 8 * 1px) calc(var(--sheep-size) * 1 / 8 * 1px) 0 0;
+        border: 2px solid black;
+        background-color: var(--c2);
+        transform: rotate(90deg) translate(-5px,25px);
+        z-index: 10;
+      }
+      .footl {
+        position: absolute;
+        right: calc((-1*var(--sheep-size) * 1 / 3) * 1px);
+        top: calc((var(--sheep-size)*3/   4 - var(--sheep-size) * 1 / 6 ) * 1px);
+        width: calc(var(--sheep-size) *2 /3 * 1px);
+        height: calc(var(--sheep-size) / 2 * 1px);
+        border-radius: calc(var(--sheep-size) * 3 / 8 * 1px) calc(var(--sheep-size) / 8 * 1px) 0 0;
+        border: 2px solid black;
+        background-color: var(--c2);
+        transform: translate(5px,0px);
+      }
+      .head {
+        position: absolute;
+        left: calc(-1 * var(--sheep-size) /6 * 1px);
+        bottom: calc(-1 * var(--sheep-size) /4 * 1px);
+        width: calc(var(--sheep-size) * 1px);
+        height: calc(var(--sheep-size) * 1px);
+        border-radius: 0 0 calc(var(--sheep-size) / 2 * 1px) 0;
+        border: 2px solid black;
+        background-color: var(--c);
+        border-top: 0;
+        border-left: 0;
+
+        .mouth {
+          position: absolute;
+          /*left: calc(-1 * var(--sheep-size) /2 * 1px);*/
+          right: calc(var(--sheep-size) * 1px - 2px);
+          top: 0px;
+          width: calc(var(--sheep-size) /2 * 1px);
+          height: calc(var(--sheep-size) * 1px);
+          border-radius: calc(var(--sheep-size) /2 * 1px) 0 0 calc(var(--sheep-size) /2 * 1px);
+          border: 2px solid black;
+          border-right: 0;
+          background-color: var(--c);
+          transform: rotate(0deg);
+          /*overflow: hidden;*/
+        }
+        .mouth::before {
+          content: "";
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 200%;
+          height: 100%;
+          border-radius: calc(var(--sheep-size) /2 * 1px) 0 0 calc(var(--sheep-size) /2 * 1px);
+          /*background-color: red;*/
+          /*background: linear-gradient(60deg, hsl(57, 98%, 78%), white);*/
+          background: linear-gradient(60deg, hsl(57, 98%, 78%) 20%, white 60%);
+        }
+        .mouth::after {
+          content: "";
+          position: absolute;
+          top: 30%;
+          left: 30%;
+          width: 20%;
+          height: 10%;
+          border-radius: 100%;
+          background-color: black;
+        }
+
+        .forehead {
+          position: absolute;
+          left: 0px;
+          /*top: calc(-1 * var(--sheep-size) * 1px);*/
+          bottom: calc(var(--sheep-size) * 1px - 2px);
+          width: calc(var(--sheep-size) * 1px);
+          height: calc(var(--sheep-size)* 1 * 1px);
+          border-radius: calc(var(--sheep-size) /2 * 1px) calc(var(--sheep-size) /2 * 1px) 0 0 ;
+          border: 2px solid black;
+          border-bottom: 0;
+          background-color: var(--c);
+        }
+
+        .eye {
+          position: absolute;
+          left: calc(-1 * var(--sheep-size) / 6 * 1px);
+          top: calc(-1 * (var(--sheep-size) / 2 - var(--sheep-size)* 0 / 10)* 1px);
+          width: calc(var(--sheep-size) / 3 * 1px);
+          height: calc(var(--sheep-size) * 2 / 3 * 1px);
+          border-radius: 50%;
+          border: 1.5px solid black;
+          background-color: hsl(193, 82%, 94%);
+          overflow: hidden;
+        }
+        .eye::after{
+            content: "";
+            position: absolute;
+            left: -8px;
+            bottom: -10px;
+            width: calc(var(--sheep-size) / 3 * 1px);
+            height: calc(var(--sheep-size) * 2 / 3 * 1px);
+            border-radius: 50%;
+            background-color: hsl(0, 0%, 14%);
+          }
+
+        .ear {
+          position: absolute;
+          left: calc(var(--sheep-size) / 4 * 1px);
+          /*top: calc(-1 * var(--sheep-size) * 1px);*/
+          bottom: calc(var(--sheep-size) * 1 / 3 * 1px);
+          width: calc(var(--sheep-size) / 2* 1px);
+          height: calc(var(--sheep-size) * 1.25 * 1px);
+          border-radius: 0 0 calc(var(--sheep-size) /2 * 1px) calc(var(--sheep-size) /2 * 1px);
+          border: 2px solid black;
+          border-top: 0;
+          background-color: var(--c);
+        }
+
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="canva">
+    <div class="sheep">
+      <div class="footl"></div>
+      <div class="footr"></div>
+      <div class="body">
+        <div class="tail"></div>
+      </div>
+      <div class="head">
+        <div class="mouth"></div>
+        <div class="forehead"></div>
+        <div class="eye"></div>
+        <div class="ear"></div>
+      </div>
+      
+      
+      
+      <!--
+      <div class="body"></div>
+      <div class="footl"></div>
+      <div class="footr"></div>
+      <div class="mouth"></div>
+      <div class="eye"></div>
+      <div class="head highlight"></div>
+      <div class="tail"></div>
+      -->
+    </div>
+  </div>
+</body>
+</html>
